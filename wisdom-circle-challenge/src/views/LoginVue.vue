@@ -43,20 +43,11 @@ import { ref, onMounted } from 'vue'
 import ButtonVue from '../components/Button.vue'
 import MainLogo from "../components/MainLogo.vue"
 import { useToast } from "vue-toastification";
-
-
+import axios from 'axios';
 
 let emailRef = ref<HTMLInputElement | null>(null);
 let passRef = ref<HTMLInputElement | null>(null);
-let showPassword = ref(true), showToast = ref(false);
-
-// const toast = useToast();
-
-// // or with options
-// if (showToast.value) toast.error("Your password is reset succesfully", {
-//     timeout: 2000
-// });
-
+let showPassword = ref(true);
 
 onMounted(() => {
     emailRef.value!.focus()
@@ -66,7 +57,7 @@ onMounted(() => {
 let email = ref(""), password = ref(""),
     emailError = ref(""), passwordError = ref("")
 
-let validate = () => {
+let validate = async () => {
     if (!email.value.match(/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,63})$/)) {
         emailError.value = "Please enter a valid Email ID"
         emailRef.value!.style.borderColor = "red"
@@ -88,7 +79,10 @@ let validate = () => {
     else {
         passwordError.value = ""
         passRef.value!.style.borderColor = "inherit"
-    }
+
+        let userDetails = async () => await axios.get(`https://wisdom-circle-nest-production.up.railway.app/${email.value}`).then((res)=>res.data)
+        password.value === (await userDetails()).password ? router.push("welcome"): console.error((await userDetails()).email)
+    }    
 }
 
 

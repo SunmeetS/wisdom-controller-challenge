@@ -19,7 +19,8 @@
             <div @click="doesUserExist" class="footer">
                 <ButtonVue> Send Reset Password Link </ButtonVue>
             </div>
-            <ModalCompVueVue @close="{showModal = false; $router.push('resetpassword')}" v-if="showModal"></ModalCompVueVue>
+            <ModalCompVueVue @close="{showModal = false; $router.push('resetpassword')}" v-if="showModal">
+            </ModalCompVueVue>
         </div>
     </div>
 </template>
@@ -29,6 +30,7 @@ import ButtonVue from '@/components/Button.vue';
 import MainLogo from '@/components/MainLogo.vue';
 import { defineProps, onMounted, ref, toRef } from 'vue';
 import ModalCompVueVue from '../components/ModalComp.vue.vue';
+import axios, {Axios} from "axios"
 
 let emailRef = ref<HTMLInputElement | null>(null);
 
@@ -47,9 +49,11 @@ let validate = () => {
 
 let showModal = ref(false)
 
-let actualEmail = 'user@mail.com'
-let doesUserExist = () => {
-    if (email.value !== actualEmail) emailError.value = 'Sorry! This email  is not registered.'
+let doesUserExist = async () => {
+    console.log("https://wisdom-circle-nest-production.up.railway.app/"+email.value);
+    
+    let userObj = await axios.get(`https://wisdom-circle-nest-production.up.railway.app/${email.value}`)
+    if (email.value !== userObj.data.email ) emailError.value = 'Sorry! This email  is not registered.'
     else {
         showModal.value = true
     }
