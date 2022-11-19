@@ -47,7 +47,7 @@ import TextComp from '@/components/TextComp.vue';
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    width: 420px;
+    width: 380px;
     background: white;
     height: 90vh;
 }

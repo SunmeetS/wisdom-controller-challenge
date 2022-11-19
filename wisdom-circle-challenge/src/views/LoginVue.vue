@@ -218,7 +218,7 @@ a {
 }
 
 .mainScreen {
-    width: 420px;
+    width: 380px;
     height: 90vh;
     background: white;
     display: flex;

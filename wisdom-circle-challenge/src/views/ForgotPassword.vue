@@ -171,9 +171,9 @@ input {
 
 .signIn {
     display: flex;
-    width: 400px;
+    width: 340px;
     flex-wrap: wrap;
-
-
 }
+
+
 </style>
