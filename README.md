@@ -15,6 +15,8 @@ git clone
 cd (Project directory)
 npm run start:dev
 
+### Currently Email and Password are user@mail.com and Abcde@12345 respectively
+
 I have Replicated only the Mobile Version of the Project as I didn't notice there was a desktop version as well. Do Let me know If you have any queries. 
 
 ### Live Deployed Link: https://wisdom-challenge.netlify.app/
