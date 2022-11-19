@@ -46,7 +46,7 @@ img{
 
 .mainModal{
   height: 90vh;
-  width: 24.5vw;
+  width: 415px;
   top: 0%;
   display: flex;
   justify-content: center;

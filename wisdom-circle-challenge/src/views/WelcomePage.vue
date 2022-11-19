@@ -10,12 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import router from '@/router';
-import { ref, onMounted } from 'vue'
-import ButtonVue from '../components/Button.vue'
 import MainLogo from "../components/MainLogo.vue"
-import { useToast } from "vue-toastification";
-import axios from 'axios';
 import TextComp from '@/components/TextComp.vue';
 
 </script>
@@ -24,7 +19,7 @@ import TextComp from '@/components/TextComp.vue';
 .mainWelcome {
     display: flex;
     justify-content: center;
-    align-content: center;
+    align-items: center;
     height: 100vh;
     background: rgba(0, 0, 0, 0.848);
     position: fixed;
@@ -33,7 +28,7 @@ import TextComp from '@/components/TextComp.vue';
     left: 0rem;
 }
 
-.textWelcome .signUp>*{
+.textWelcome .signUp>* {
     text-align: center;
 }
 
@@ -41,7 +36,7 @@ import TextComp from '@/components/TextComp.vue';
     height: 20vh;
 }
 
-.textWelcome>*{
+.textWelcome>* {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -52,7 +47,8 @@ import TextComp from '@/components/TextComp.vue';
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    width: 25vw;
+    width: 420px;
     background: white;
-}   
+    height: 90vh;
+}
 </style>

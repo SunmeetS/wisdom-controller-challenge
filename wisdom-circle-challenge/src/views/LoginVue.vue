@@ -174,12 +174,12 @@ a:hover {
 .passDiv img {
     position: relative;
     left: -15px;
-    height: 0.9rem;
+    height: 0.7rem;
     top: 5px;
 }
 
 .close {
-    height: 1.1rem !important;
+    height: 0.9rem !important;
 }
 
 .top {
@@ -218,7 +218,7 @@ a {
 }
 
 .mainScreen {
-    width: 25vw;
+    width: 420px;
     height: 90vh;
     background: white;
     display: flex;

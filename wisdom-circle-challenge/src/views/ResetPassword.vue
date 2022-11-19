@@ -10,20 +10,20 @@
                             <div class="passDiv">
                                 <input @input="validate" v-model="password1" placeholder="Password"
                                     :type="showPassword1 ? 'password' : 'text'" class="password" />
-                                <img class="open2" :onclick="() => showPassword1 = !showPassword1" v-if="showPassword1"
+                                <img class="open" :onclick="() => showPassword1 = !showPassword1" v-if="showPassword1"
                                     src="../assets/Vector.png" alt="">
-                                <img class="close2" :onclick="() => showPassword1 = !showPassword1"
-                                    v-if="!showPassword1" src="../assets/hidePassword.png" alt="">
+                                <img class="close" :onclick="() => showPassword1 = !showPassword1" v-if="!showPassword1"
+                                    src="../assets/hidePassword.png" alt="">
                             </div>
                             <p class="errMsg">{{ passwordError1 }}</p>
 
                             <div class="passDiv">
                                 <input :oninput="validate" v-model="password2" placeholder="Password"
                                     :type="showPassword2 ? 'password' : 'text'" class="password" />
-                                <img class="open2" :onclick="() => showPassword2 = !showPassword2" v-if="showPassword2"
+                                <img class="open" :onclick="() => showPassword2 = !showPassword2" v-if="showPassword2"
                                     src="../assets/Vector.png" alt="">
-                                <img class="close2" :onclick="() => showPassword2 = !showPassword2"
-                                    v-if="!showPassword2" src="../assets/hidePassword.png" alt="">
+                                <img class="close" :onclick="() => showPassword2 = !showPassword2" v-if="!showPassword2"
+                                    src="../assets/hidePassword.png" alt="">
                             </div>
                             <p class="errMsg">{{ passwordError2 }}</p>
 
@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div class="footer">
-                <Button @click="ifSuccess()"> Sign in </Button>
+                <Button @click="ifSuccess()"> Reset Password </Button>
             </div>
         </div>
     </div>
@@ -45,6 +45,7 @@ import { ref } from 'vue';
 import MainLogo from '../components/MainLogo.vue'
 import TextComp from '../components/TextComp.vue'
 import { useToast } from "vue-toastification";
+import axios from 'axios';
 
 let showPassword1 = ref(true), showPassword2 = ref(true),
     password1 = ref(""), password2 = ref(""),
@@ -66,7 +67,7 @@ let validate = () => {
     }
 }
 
-let ifSuccess = () => {
+let ifSuccess = async () => {
     console.log(password1.value + " 1", password1.value + " 2", password2.value + " 3", passwordError1.value + " 4", passwordError2.value)
 
     if (password1.value != '' && password2.value != '' && passwordError1.value == "" && passwordError2.value == '') {
@@ -76,7 +77,20 @@ let ifSuccess = () => {
         toast.success("Your password is reset succesfully", {
             timeout: 2000
         });
-        router.push('/')
+
+        axios({
+            method: 'patch',
+            url: 'http://wisdom-circle-nest-production.up.railway.app/updatePassword',
+            data: {
+                email: 'user@mail.com',
+                password: password1.value
+            }
+        }).then((res) => {
+            console.log(res.data)
+            router.push('/')
+        }
+        ).catch((err)=>console.log(err.message))
+
     }
 }
 

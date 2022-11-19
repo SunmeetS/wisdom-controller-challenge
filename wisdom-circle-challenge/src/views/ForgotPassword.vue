@@ -5,32 +5,34 @@
                 <MainLogo />
                 <div class="middle">
                     <div class="signIn">
-                        <div class="textSignIn">
-                            <h2>Forgot password</h2>
-                            <div class="signUp">
-                                <p>We’ll send you a link to reset your password.</p>
-                            </div>
-                        </div>
-                        <input v-model="email" @input="validate" ref="emailRef" type="text" />
+                        <TextComp heading="Forgot password" subText="We’ll send you a link to reset your password." />
+                        <input v-model="email" placeholder="Registered Email" @input="validate" ref="emailRef"
+                            type="text" />
                         <span>{{ emailError }} </span>
                     </div>
                 </div>
             </div>
-            <div @click="doesUserExist" class="footer">
-                <ButtonVue> Send Reset Password Link </ButtonVue>
+            <div class="footer">
+                <div>
+                    <ButtonVue @click="doesUserExist"> Send Reset Password Link </ButtonVue>
+                    <ButtonVue :onclick="()=>router.push('/')" class="return"> Return to sign in </ButtonVue>
+                </div>
             </div>
-            <ModalCompVueVue @close="{showModal = false; $router.push('resetpassword')}" v-if="showModal">
-            </ModalCompVueVue>
+            <ModalCompVue @close="{showModal = false; router.push('resetpassword')}" v-if="showModal">
+            </ModalCompVue>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
+import axios from "axios"
 import ButtonVue from '@/components/Button.vue';
-import MainLogo from '@/components/MainLogo.vue';
-import { defineProps, onMounted, ref, toRef } from 'vue';
-import ModalCompVueVue from '../components/ModalComp.vue.vue';
-import axios, {Axios} from "axios"
+import MainLogo from '../components/MainLogo.vue';
+import ModalCompVue from '@/components/ModalComp.vue.vue';
+import TextComp from '@/components/TextComp.vue';
+import router from '@/router';
+
 
 let emailRef = ref<HTMLInputElement | null>(null);
 
@@ -50,10 +52,10 @@ let validate = () => {
 let showModal = ref(false)
 
 let doesUserExist = async () => {
-    console.log("https://wisdom-circle-nest-production.up.railway.app/"+email.value);
-    
+    console.log("https://wisdom-circle-nest-production.up.railway.app/" + email.value);
+
     let userObj = await axios.get(`https://wisdom-circle-nest-production.up.railway.app/${email.value}`)
-    if (email.value !== userObj.data.email ) emailError.value = 'Sorry! This email  is not registered.'
+    if (email.value !== userObj.data.email) emailError.value = 'Sorry! This email  is not registered.'
     else {
         showModal.value = true
     }
@@ -70,6 +72,26 @@ let doesUserExist = async () => {
 
 span {
     color: red
+}
+
+.footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+    align-items: flex-end;
+}
+
+.footer > *{
+    width: 100%;
+}
+
+.return{
+    background: #FEFCF4;
+    color: #A9871E;
+}
+
+.footer >* >* {
+    margin: 1rem 0rem 0rem 0rem;
 }
 
 
@@ -149,7 +171,7 @@ input {
 
 .signIn {
     display: flex;
-    width: 23vw;
+    width: 400px;
     flex-wrap: wrap;
 
 
