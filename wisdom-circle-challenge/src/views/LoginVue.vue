@@ -29,6 +29,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="userDeets">
+                    <h4>Current Email : {{ userDetails? userDetails.email:'' }}</h4>
+                    <h4>Current Password : {{ userDetails? userDetails.password:'' }}</h4>
+                </div>
+
             </div>
             <div class="footer">
                 <ButtonVue @click="validate"> Sign in </ButtonVue>
@@ -48,6 +53,14 @@ import axios from 'axios';
 let emailRef = ref<HTMLInputElement | null>(null);
 let passRef = ref<HTMLInputElement | null>(null);
 let showPassword = ref(true);
+
+let userDetailsFunc = async () => await axios.get(`https://wisdom-circle-nest-production.up.railway.app/user@mail.com`).then((res) => res.data)
+
+let userDetails = ref()
+
+userDetailsFunc().then((res) => {
+    userDetails.value = res
+})
 
 onMounted(() => {
     emailRef.value!.focus()
@@ -76,13 +89,17 @@ let validate = async () => {
                                 Max 30 characters.`
         passRef.value!.style.borderColor = "red"
     }
+    else if (password.value != userDetails.value.password) {
+        passwordError.value = 'Password is incorrect. '
+    }
     else {
         passwordError.value = ""
         passRef.value!.style.borderColor = "inherit"
 
-        let userDetails = async () => await axios.get(`https://wisdom-circle-nest-production.up.railway.app/${email.value}`).then((res)=>res.data)
-        password.value === (await userDetails()).password ? router.push("welcome"): console.error((await userDetails()).email)
-    }    
+        console.log(userDetails.value.password, password.value)
+
+        password.value === userDetails.value.password ? router.push("welcome") : console.error(userDetails.value.email)
+    }
 }
 
 
@@ -90,6 +107,7 @@ let validate = async () => {
 </script>
 
 <style>
+
 .signUp {
     display: flex;
     font-size: 0.8rem;
@@ -119,6 +137,10 @@ a {
 .textSignIn h2 {
     font-family: "Inter", sans-serif;
     font-size: 21px;
+}
+
+.userDeets>*{
+    margin: 0.5rem
 }
 
 .textSignIn p {
@@ -199,8 +221,6 @@ a:hover {
     color: #121317;
 }
 
-
-
 .footer {
     width: 100vw;
     display: flex;
@@ -259,4 +279,6 @@ input {
 * {
     letter-spacing: 0.05rem;
 }
+
+
 </style>

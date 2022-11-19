@@ -74,22 +74,25 @@ let ifSuccess = async () => {
         const toast = useToast();
 
         // or with options
-        toast.success("Your password is reset succesfully", {
-            timeout: 2000
-        });
 
         axios({
             method: 'patch',
-            url: 'http://wisdom-circle-nest-production.up.railway.app/updatePassword',
+            url: 'https://wisdom-circle-nest-production.up.railway.app/updatePassword',
             data: {
                 email: 'user@mail.com',
                 password: password1.value
             }
         }).then((res) => {
+            toast.success("Your password is reset succesfully", {
+            timeout: 2000
+        });
             console.log(res.data)
             router.push('/')
         }
-        ).catch((err)=>console.log(err.message))
+        ).catch((err)=>{console.log(err.message);
+            toast.error("Your password was not changed. Please try again", {
+            timeout: 2000
+        });})
 
     }
 }

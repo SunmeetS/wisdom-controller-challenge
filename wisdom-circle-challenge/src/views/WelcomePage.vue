@@ -22,7 +22,7 @@ import TextComp from '@/components/TextComp.vue';
     align-items: center;
     height: 100vh;
     background: rgba(0, 0, 0, 0.848);
-    position: fixed;
+    position: absolute;
     width: 100vw;
     top: 0rem;
     left: 0rem;

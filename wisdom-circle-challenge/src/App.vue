@@ -12,6 +12,10 @@ header {
   max-height: 100vh;
 }
 
+#app{
+  overflow: hidden;
+}
+
 .logo {
   display: block;
   margin: 0 auto 2rem;
