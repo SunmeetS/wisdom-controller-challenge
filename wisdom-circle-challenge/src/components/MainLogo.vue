@@ -1,7 +1,7 @@
 <template>
 <div class="header">
     <div class="logo">
-        <img src="../assets/Path 647.svg" alt="img" />
+        <img src="../assets/WisdomLogo.svg" alt="img" />
     </div>
     <div class="companyName">
         <h4>WISDOM</h4>
