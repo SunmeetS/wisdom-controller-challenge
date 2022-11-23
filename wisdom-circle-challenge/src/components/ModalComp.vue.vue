@@ -26,6 +26,10 @@ emits
   align-items: center;
 }
 
+p{
+  width: 75%
+}
+
 img{
   border-radius: 50%;
   padding: 0.2rem !important;
@@ -35,8 +39,7 @@ img{
 }
 
 *{
-  font-family: "Inter", sans-serif;
-
+  font-family: 'Poppins';
 }
 
 .upper h6{
@@ -45,8 +48,8 @@ img{
 }
 
 .mainModal{
-  height: 90vh;
-  width: 415px;
+  height: 100vh;
+  width: 100vw;
   top: 0%;
   display: flex;
   justify-content: center;
@@ -58,7 +61,9 @@ img{
 .modalContainer{
   margin: 0.5rem;
   background: white;
-  padding: 0.5rem 1rem
+  padding: 0.5rem 1rem;
+  width: 22%;
+  border-radius: 0.5rem;
 }
 
 .upper>*, p{

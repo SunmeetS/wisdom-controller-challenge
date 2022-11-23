@@ -22,8 +22,7 @@
 }
 .companyName h4 {
     color: #404554;
-    font-family: "Inter", sans-serif;
-    font-weight: 600;
+    font-family: 'Poppins';    font-weight: 600;
 }
 
 .companyName>*{
@@ -31,7 +30,6 @@
 }
 .companyName p {
     color: #888b94;
-    font-family: "Inter", sans-serif;
-}
+    font-family: 'Poppins';}
 
 </style>

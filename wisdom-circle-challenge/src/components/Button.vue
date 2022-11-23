@@ -9,18 +9,22 @@
 </script>
 
 <style scoped>
-
 button {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 8px 32px;
+    width: 100%;
+    cursor: pointer;
+    padding: 11px 32px;
+    gap: 8px;
     background: #F1C12B;
     border-radius: 4px;
-    width: 100%;
+    border: none;
+    font-family: 'Poppins';
+    font-style: normal;
     font-weight: 600;
-    cursor: pointer;
-    font-size: 1rem;
+    font-size: 18px;
+    line-height: 26px;
 }
 </style>

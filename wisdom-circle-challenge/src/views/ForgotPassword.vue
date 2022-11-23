@@ -1,4 +1,7 @@
 <template>
+    <div class="pc">
+        <ForgotPasswordPC/>
+    </div>
     <div class="main">
         <div class="mainScreen">
             <div class="top">
@@ -15,7 +18,8 @@
             <div class="footer">
                 <div>
                     <ButtonVue @click="doesUserExist"> Send Reset Password Link </ButtonVue>
-                    <ButtonVue :onclick="()=>router.push('/')" class="return"> Return to sign in </ButtonVue>
+                    <ButtonVue :onclick="() => router.push('/')" class="return"> Return to sign in
+                    </ButtonVue>
                 </div>
             </div>
             <ModalCompVue @close="{showModal = false; router.push('resetpassword')}" v-if="showModal">
@@ -32,7 +36,7 @@ import MainLogo from '../components/MainLogo.vue';
 import ModalCompVue from '@/components/ModalComp.vue.vue';
 import TextComp from '@/components/TextComp.vue';
 import router from '@/router';
-
+import ForgotPasswordPC from './ForgotPasswordPC.vue';
 
 let emailRef = ref<HTMLInputElement | null>(null);
 
@@ -64,116 +68,126 @@ let doesUserExist = async () => {
 </script>
 
 <style scoped>
-.signUp {
-    display: flex;
-    font-size: 0.8rem;
-    align-items: center;
+.main {
+    display: none;
 }
 
-span {
-    color: red
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+
+    .main {
+        display: flex;
+    }
+
+    .signUp {
+        display: flex;
+        font-size: 0.8rem;
+        align-items: center;
+    }
+
+    span {
+        color: red
+    }
+
+    .footer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: end;
+        align-items: flex-end;
+    }
+
+    .footer>* {
+        width: 100%;
+    }
+
+    .return {
+        background: #FEFCF4;
+        color: #A9871E;
+    }
+
+    .footer>*>* {
+        margin: 1rem 0rem 0rem 0rem;
+    }
+
+
+    .textSignIn {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    a {
+        margin: 0.1rem;
+    }
+
+    .textSignIn h2 {
+        font-family: 'Poppins';
+        font-size: 21px;
+    }
+
+    .textSignIn p {
+        color: grey;
+    }
+
+    .textSignIn a {
+        font-family: 'Poppins';
+    }
+
+    .signUp a {
+        margin-bottom: 5px;
+    }
+
+    .textSignIn {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    a {
+        margin: 0.1rem;
+    }
+
+    .textSignIn h2 {
+        font-family: 'Poppins';
+        font-size: 21px;
+    }
+
+    .textSignIn p {
+        color: grey;
+    }
+
+    .textSignIn a {
+        font-family: 'Poppins';
+    
+    }
+
+    .top>* {
+        width: 100%;
+    }
+
+    .middle {
+        justify-content: flex-start;
+    }
+
+    input {
+        padding: 0.7rem
+    }
+
+    .signIn {
+        display: flex;
+        width: 340px;
+        flex-wrap: wrap;
+    }
 }
-
-.footer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: end;
-    align-items: flex-end;
-}
-
-.footer > *{
-    width: 100%;
-}
-
-.return{
-    background: #FEFCF4;
-    color: #A9871E;
-}
-
-.footer >* >* {
-    margin: 1rem 0rem 0rem 0rem;
-}
-
-
-.textSignIn {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    width: 100%;
-}
-
-h1,
-h2,
-h3,
-h4,
-p,
-a {
-    margin: 0.1rem;
-}
-
-.textSignIn h2 {
-    font-family: "Inter", sans-serif;
-    font-size: 21px;
-}
-
-.textSignIn p {
-    color: grey;
-}
-
-.textSignIn a {
-    font-family: "Inter", sans-serif;
-}
-
-.signUp a {
-    margin-bottom: 5px;
-}
-
-.textSignIn {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    width: 100%;
-}
-
-h1,
-h2,
-h3,
-h4,
-p,
-a {
-    margin: 0.1rem;
-}
-
-.textSignIn h2 {
-    font-family: "Inter", sans-serif;
-    font-size: 21px;
-}
-
-.textSignIn p {
-    color: grey;
-}
-
-.textSignIn a {
-    font-family: "Inter", sans-serif;
-}
-
-.top>* {
-    width: 100%;
-}
-
-.middle {
-    justify-content: flex-start;
-}
-
-input {
-    padding: 0.7rem
-}
-
-.signIn {
-    display: flex;
-    width: 340px;
-    flex-wrap: wrap;
-}
-
-
 </style>

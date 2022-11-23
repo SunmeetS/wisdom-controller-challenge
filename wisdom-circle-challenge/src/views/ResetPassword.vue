@@ -1,4 +1,7 @@
 <template>
+    <div class="pc">
+        <ResetPagePC/>
+    </div>
     <div class="main">
         <div class="mainScreen">
             <div class="top">
@@ -46,6 +49,7 @@ import MainLogo from '../components/MainLogo.vue'
 import TextComp from '../components/TextComp.vue'
 import { useToast } from "vue-toastification";
 import axios from 'axios';
+import ResetPagePC from './ResetPagePC.vue';
 
 let showPassword1 = ref(true), showPassword2 = ref(true),
     password1 = ref(""), password2 = ref(""),
@@ -58,7 +62,7 @@ let validate = () => {
                                 Min 1 lowercase letter.
                                 Min 1 special character.
                                 Min 1 number.
-                                 Min 8 characters.
+                                Min 8 characters.
                                 Max 30 characters.`
     }
     else {
@@ -99,6 +103,17 @@ let ifSuccess = async () => {
 
 </script>
 
-<style>
+<style scoped>
+
+.mainScreen{
+    display: none;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+
+    .mainScreen {
+        display: flex;
+    }
+}
 
 </style>
