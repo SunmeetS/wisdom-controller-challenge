@@ -32,7 +32,7 @@ import CompanyLogo from "../components/CompanyLogo.vue";
 import { ref } from 'vue';
 import axios from "axios"
 import MainLogo from '../components/MainLogo.vue';
-import ModalCompVue from '@/components/ModalComp.vue.vue';
+import ModalCompVue from '@/components/ModalComp.vue';
 import router from '@/router';
 import ForgotPasswordPC from './ForgotPasswordPC.vue';
 

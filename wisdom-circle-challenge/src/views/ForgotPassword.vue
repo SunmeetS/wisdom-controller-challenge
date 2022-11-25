@@ -33,7 +33,7 @@ import { ref } from 'vue';
 import axios from "axios"
 import ButtonVue from '@/components/Button.vue';
 import MainLogo from '../components/MainLogo.vue';
-import ModalCompVue from '@/components/ModalComp.vue.vue';
+import ModalCompVue from '@/components/ModalComp.vue';
 import TextComp from '@/components/TextComp.vue';
 import router from '@/router';
 import ForgotPasswordPC from './ForgotPasswordPC.vue';

@@ -138,6 +138,10 @@ input {
         display: none;
     }
 
+    .open, .close {
+        margin-top: 8px;
+    }
+
     .mainLogoMobile {
         display: flex !important;
     }
