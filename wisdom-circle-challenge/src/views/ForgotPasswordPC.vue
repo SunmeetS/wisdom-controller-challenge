@@ -59,8 +59,8 @@ let showModal = ref(false)
 let doesUserExist = async () => {
     console.log("https://wisdom-circle-nest-production.up.railway.app/" + email.value);
 
-    let userObj = await axios.get(`https://wisdom-circle-nest-production.up.railway.app/${email.value}`)
-    if (email.value !== userObj.data.email) emailError.value = 'Sorry! This email  is not registered.'
+    let userObj = await axios.get(`https://wisdom-circle-nest-production.up.railway.app/${email.value}`).catch(()=>showModal.value = true)
+    if (email.value !== userObj?.data?.email) emailError.value = 'Sorry! This email  is not registered.'
     else {
         showModal.value = true
     }

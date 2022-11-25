@@ -22,20 +22,24 @@
                             <div class="passDiv">
                                 <input ref="passRef" v-model="password" placeholder="Password"
                                     :type="showPassword ? 'password' : 'text'" class="password" />
-                                <img class="open" :onclick="() => showPassword = !showPassword" v-if="showPassword"
-                                    src="../assets/Vector.png" alt="">
-                                <img class="close" :onclick="() => showPassword = !showPassword" v-if="!showPassword"
-                                    src="../assets/hidePassword.png" alt="">
+                                <img class="open" :onclick="() => showPassword = !showPassword"
+                                    v-if="(showPassword && passwordError)" src="../assets/Vector.png" alt="">
+                                <img class="close" :onclick="() => showPassword = !showPassword"
+                                    v-if="!showPassword && passwordError" src="../assets/hidePassword.png" alt="">
+                                <img class="open" :onclick="() => showPassword = !showPassword"
+                                    v-if="showPassword && !passwordError" src="../assets/openEye.png" alt="">
+                                <img class="close" :onclick="() => showPassword = !showPassword"
+                                    v-if="!showPassword && !passwordError" src="../assets/closedEye.png" alt="">
                             </div>
                             <p class="errMsg">{{ passwordError }}</p>
                             <a :onclick="() => router.push('forgotpassword')" class="forgotPassword">Forgot password</a>
                         </div>
                     </div>
                 </div>
-                <div class="userDeets">
+                <!-- <div class="userDeets">
                     <h4>Current Email : {{ userDetails ? userDetails.email : '' }}</h4>
                     <h4>Current Password : {{ userDetails ? userDetails.password : '' }}</h4>
-                </div>
+                </div> -->
 
             </div>
             <div class="footer">
@@ -58,11 +62,11 @@ let emailRef = ref<HTMLInputElement | null>(null);
 let passRef = ref<HTMLInputElement | null>(null);
 let showPassword = ref(true);
 
-let userDetailsFunc = async () => await axios.get(`https://wisdom-circle-nest-production.up.railway.app/user@mail.com`).then((res) => res.data)
+let userDetailsFunc: any = async () => await axios.get(`https://wisdom-circle-nest-production.up.railway.app/user@mail.com`).then((res) => res.data)
 
 let userDetails = ref()
 
-userDetailsFunc().then((res) => {
+userDetailsFunc().then((res: any) => {
     userDetails.value = res
 })
 
@@ -83,14 +87,8 @@ let validate = async () => {
         emailError.value = ""
         emailRef.value!.style.borderColor = "inherit"
     }
-    if (!password.value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/)) {
-        passwordError.value = `Password Should Contain The Following :
-                                Min 1 uppercase letter.
-                                Min 1 lowercase letter.
-                                Min 1 special character.
-                                Min 1 number.
-                                Min 8 characters.
-                                Max 30 characters.`
+    if (password.value.length < 8) {
+        passwordError.value = `Password must be at least 8 characters`
         passRef.value!.style.borderColor = "red"
     }
     else if (password.value != userDetails.value.password) {
@@ -115,17 +113,32 @@ let validate = async () => {
     display: none;
 }
 
-.mainLogoMobile{
+input {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.mainLogoMobile {
     display: none !important;
 }
 
+.errMsg {
+    color: red;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+}
 
 
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+@media only screen and (min-device-width : 320px) and (max-device-width : 940px) {
     .pc {
         display: none;
     }
-    .mainLogoMobile{
+
+    .mainLogoMobile {
         display: flex !important;
     }
 
@@ -135,8 +148,11 @@ let validate = async () => {
         align-items: center;
     }
 
-    .signUp a {
+    .signUp a~p {
         margin-bottom: 5px;
+        font-family: 'Poppins';
+        font-weight: 400;
+        font-size: 14px;
     }
 
     .textSignIn {
@@ -153,10 +169,13 @@ let validate = async () => {
     p,
     a {
         margin: 0.1rem;
+        font-family: 'Poppins';
     }
 
     .textSignIn h2 {
         font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 700;
         font-size: 21px;
     }
 
@@ -166,17 +185,11 @@ let validate = async () => {
 
     .textSignIn p {
         color: grey;
+        font-size: 14px;
     }
 
     .textSignIn a {
         font-family: 'Poppins';
-    }
-
-    .errMsg {
-        width: 100%;
-        text-align: start;
-        font-size: 0.7rem;
-        color: red
     }
 
     .main {
@@ -188,7 +201,7 @@ let validate = async () => {
         left: 0rem;
         height: 100vh;
         width: 100vw;
-        background: rgba(0, 0, 0, 0.9);
+
         overflow: hidden;
     }
 
@@ -259,8 +272,8 @@ let validate = async () => {
     }
 
     .mainScreen {
-        width: 380px;
-        height: 90vh;
+        width: 360px;
+        height: 700px;
         background: white;
         display: flex;
         justify-content: space-around;
@@ -288,7 +301,7 @@ let validate = async () => {
         margin-top: 0.7rem;
     }
 
-    .passDiv input {    
+    .passDiv input {
         border: none;
         margin-top: 0rem;
     }

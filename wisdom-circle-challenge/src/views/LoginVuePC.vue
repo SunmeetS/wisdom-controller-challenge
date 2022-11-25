@@ -13,14 +13,21 @@
                 <div class="inputGroup">
                     <input ref="emailRef" type="email" v-model="email" placeholder="Email Id or Mobile Number"
                         class="email" />
-                    <p class="errMsg">{{ emailError }}</p>
+                    <div class="errMsg">
+                        <p >{{ emailError }}</p>
+
+                    </div>
                     <div class="passDiv">
                         <input ref="passRef" v-model="password" placeholder="Password"
                             :type="showPassword ? 'password' : 'text'" class="password" />
-                        <img class="open" :onclick="() => showPassword = !showPassword" v-if="showPassword"
-                            src="../assets/Vector.png" alt="">
-                        <img class="close" :onclick="() => showPassword = !showPassword" v-if="!showPassword"
-                            src="../assets/hidePassword.png" alt="">
+                        <img class="open" :onclick="() => showPassword = !showPassword"
+                            v-if="(showPassword && passwordError)" src="../assets/Vector.png" alt="">
+                        <img class="close" :onclick="() => showPassword = !showPassword"
+                            v-if="!showPassword && passwordError" src="../assets/hidePassword.png" alt="">
+                        <img class="open" :onclick="() => showPassword = !showPassword"
+                            v-if="showPassword && !passwordError" src="../assets/openEye.png" alt="">
+                        <img class="close" :onclick="() => showPassword = !showPassword"
+                            v-if="!showPassword && !passwordError" src="../assets/closedEye.png" alt="">
                     </div>
                     <p class="errMsg">{{ passwordError }}</p>
                     <a :onclick="() => router.push('forgotpassword')" class="forgotPassword">Forgot password</a>
@@ -36,6 +43,7 @@
 <script setup lang="ts">
 import TextComp from '@/components/TextComp.vue';
 import router from '@/router';
+import axios from 'axios';
 import { ref } from 'vue';
 import { onMounted } from 'vue';
 import Button from '../components/Button.vue';
@@ -48,7 +56,7 @@ let userDetails = ref()
 
 let userDetailsFunc = async () => await axios.get(`https://wisdom-circle-nest-production.up.railway.app/user@mail.com`).then((res) => res.data)
 
-userDetailsFunc().then((res) => {
+userDetailsFunc().then((res: any) => {
     userDetails.value = res
 })
 
@@ -69,14 +77,8 @@ let validate = async () => {
         emailError.value = ""
         emailRef.value!.style.borderColor = "inherit"
     }
-    if (!password.value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/)) {
-        passwordError.value = `Password Should Contain The Following :
-                                Min 1 uppercase letter.
-                                Min 1 lowercase letter.
-                                Min 1 special character.
-                                Min 1 number.
-                                Min 8 characters.
-                                Max 30 characters.`
+    if (password.value.length < 8) {
+        passwordError.value = `Password must be at least 8 characters`
         passRef.value!.style.borderColor = "red"
     }
     else if (password.value != userDetails.value.password) {
@@ -95,10 +97,13 @@ let validate = async () => {
 </script>
 
 <style scoped>
-
-.errMsg{
-    color:red   
+.errMsg {
+    color: red;
+    width: 100vw
 }
+
+
+
 .inputGroup {
     display: flex;
     flex-wrap: wrap;
@@ -118,12 +123,17 @@ input {
     height: 48px
 }
 
-.inputGroup>*, .textSignIn>*{
-    margin: 0.2rem 0rem 0.2rem 0rem 
+.inputGroup>*,
+.textSignIn>* {
+    margin: 0.2rem 0rem 0.2rem 0rem
 }
 
-.buttonLoginPC{
-    margin: 1rem 0rem 0rem 0rem 
+.inputGroup a {
+    margin-left: 2rem;
+}
+
+.buttonLoginPC {
+    margin: 1rem 0rem 0rem 0rem
 }
 
 .passDiv input {
@@ -149,13 +159,14 @@ input {
     width: 21.65px
 }
 
-input{
+input {
     font-size: 16px;
     font-weight: 400;
 }
 
-.email:focus, .passDiv:focus{
-    border: 1px solid black ;
+.email:focus,
+.passDiv:focus {
+    border: 1px solid black;
 }
 
 
@@ -166,11 +177,13 @@ input{
     flex-direction: column;
     width: 100%;
 }
+
 .textSignIn h2 {
     font-family: 'Poppins';
     font-size: 24px;
     line-height: 32px;
 }
+
 .textSignIn p {
     color: grey;
 }

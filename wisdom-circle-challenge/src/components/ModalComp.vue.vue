@@ -27,7 +27,7 @@ emits
 }
 
 p{
-  width: 75%
+  width: 85%
 }
 
 img{
@@ -44,7 +44,8 @@ img{
 
 .upper h6{
   margin: 0rem;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .mainModal{
@@ -62,7 +63,7 @@ img{
   margin: 0.5rem;
   background: white;
   padding: 0.5rem 1rem;
-  width: 22%;
+  width: 20rem;
   border-radius: 0.5rem;
 }
 

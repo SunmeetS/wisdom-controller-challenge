@@ -31,9 +31,19 @@ let heading = ref(props.heading), subText = ref(props.subText)
 .textSignIn h2 {
     font-family: 'Poppins';
     font-size: 21px;
+    font-weight: 700;
+}
+
+h2, p{
+    margin: 0.2rem
 }
 
 .textSignIn p {
-    color: grey;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
 }
 </style>

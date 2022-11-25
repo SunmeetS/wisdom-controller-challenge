@@ -1,6 +1,6 @@
 <template>
     <div class="pc">
-        <ResetPagePC/>
+        <ResetPagePC />
     </div>
     <div class="main">
         <div class="mainScreen">
@@ -13,20 +13,28 @@
                             <div class="passDiv">
                                 <input @input="validate" v-model="password1" placeholder="Password"
                                     :type="showPassword1 ? 'password' : 'text'" class="password" />
-                                <img class="open" :onclick="() => showPassword1 = !showPassword1" v-if="showPassword1"
-                                    src="../assets/Vector.png" alt="">
-                                <img class="close" :onclick="() => showPassword1 = !showPassword1" v-if="!showPassword1"
-                                    src="../assets/hidePassword.png" alt="">
+                                <img class="open" :onclick="() => showPassword1 = !showPassword1"
+                                    v-if="(showPassword1 && passwordError1)" src="../assets/Vector.png" alt="">
+                                <img class="close" :onclick="() => showPassword1 = !showPassword1"
+                                    v-if="!showPassword1 && passwordError1" src="../assets/hidePassword.png" alt="">
+                                <img class="open" :onclick="() => showPassword1 = !showPassword1"
+                                    v-if="showPassword1 && !passwordError1" src="../assets/openEye.png" alt="">
+                                <img class="close" :onclick="() => showPassword1 = !showPassword1"
+                                    v-if="!showPassword1 && !passwordError1" src="../assets/closedEye.png" alt="">
                             </div>
                             <p class="errMsg">{{ passwordError1 }}</p>
 
                             <div class="passDiv">
                                 <input :oninput="validate" v-model="password2" placeholder="Password"
                                     :type="showPassword2 ? 'password' : 'text'" class="password" />
-                                <img class="open" :onclick="() => showPassword2 = !showPassword2" v-if="showPassword2"
-                                    src="../assets/Vector.png" alt="">
-                                <img class="close" :onclick="() => showPassword2 = !showPassword2" v-if="!showPassword2"
-                                    src="../assets/hidePassword.png" alt="">
+                                <img class="open" :onclick="() => showPassword2 = !showPassword2"
+                                    v-if="(showPassword2 && passwordError2)" src="../assets/Vector.png" alt="">
+                                <img class="close" :onclick="() => showPassword2 = !showPassword2"
+                                    v-if="!showPassword2 && passwordError2" src="../assets/hidePassword.png" alt="">
+                                <img class="open" :onclick="() => showPassword2 = !showPassword2"
+                                    v-if="showPassword2 && !passwordError2" src="../assets/openEye.png" alt="">
+                                <img class="close" :onclick="() => showPassword2 = !showPassword2"
+                                    v-if="!showPassword2 && !passwordError2" src="../assets/closedEye.png" alt="">
                             </div>
                             <p class="errMsg">{{ passwordError2 }}</p>
 
@@ -56,14 +64,8 @@ let showPassword1 = ref(true), showPassword2 = ref(true),
     passwordError1 = ref(""), passwordError2 = ref("")
 
 let validate = () => {
-    if (!password1.value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/)) {
-        passwordError1.value = `Password Should Contain The Following :
-                                Min 1 uppercase letter.
-                                Min 1 lowercase letter.
-                                Min 1 special character.
-                                Min 1 number.
-                                Min 8 characters.
-                                Max 30 characters.`
+    if ((password1.value.length < 8)) {
+        passwordError1.value = 'Password must be at least 8 characters'
     }
     else {
         password1.value !== password2.value ? passwordError2.value = 'Both fields do not match. ' : passwordError2.value = ''
@@ -88,15 +90,17 @@ let ifSuccess = async () => {
             }
         }).then((res) => {
             toast.success("Your password is reset succesfully", {
-            timeout: 2000
-        });
+                timeout: 2000
+            });
             console.log(res.data)
             router.push('/')
         }
-        ).catch((err)=>{console.log(err.message);
+        ).catch((err) => {
+            console.log(err.message);
             toast.error("Your password was not changed. Please try again", {
-            timeout: 2000
-        });})
+                timeout: 2000
+            });
+        })
 
     }
 }
@@ -104,8 +108,7 @@ let ifSuccess = async () => {
 </script>
 
 <style scoped>
-
-.mainScreen{
+.mainScreen {
     display: none;
 }
 
@@ -115,5 +118,4 @@ let ifSuccess = async () => {
         display: flex;
     }
 }
-
 </style>

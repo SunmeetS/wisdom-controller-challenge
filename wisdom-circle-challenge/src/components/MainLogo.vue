@@ -22,14 +22,18 @@
 }
 .companyName h4 {
     color: #404554;
-    font-family: 'Poppins';    font-weight: 600;
+    font-family: 'Poppins';    
+    font-weight: 600;
 }
 
 .companyName>*{
-    margin: 0.1rem;
+    margin: 0.1rem 0.1rem 0rem 1.2rem;
+    scale: 1.2;
 }
 .companyName p {
     color: #888b94;
-    font-family: 'Poppins';}
+    font-family: 'Poppins';
+    margin-top: 0rem;
+}
 
 </style>
