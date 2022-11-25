@@ -26,5 +26,7 @@ button {
     font-weight: 600;
     font-size: 18px;
     line-height: 26px;
+    color: black;
+    margin: 1rem 0rem 0rem 0rem
 }
 </style>

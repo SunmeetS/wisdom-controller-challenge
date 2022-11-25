@@ -73,7 +73,7 @@ let ifSuccess = async () => {
 
     axios({
       method: 'patch',
-      url: 'https://wisdom-circle-nest-production.up.railway.app/updatePassword',
+      url: import.meta.env.VITE_MAIN_URL+'/'+'updatePassword',
       data: {
         email: 'user@mail.com',
         password: password1.value

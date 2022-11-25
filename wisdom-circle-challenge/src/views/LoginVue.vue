@@ -36,10 +36,10 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="userDeets">
+                <div class="userDeets">
                     <h4>Current Email : {{ userDetails ? userDetails.email : '' }}</h4>
                     <h4>Current Password : {{ userDetails ? userDetails.password : '' }}</h4>
-                </div> -->
+                </div>
 
             </div>
             <div class="footer">
@@ -62,7 +62,7 @@ let emailRef = ref<HTMLInputElement | null>(null);
 let passRef = ref<HTMLInputElement | null>(null);
 let showPassword = ref(true);
 
-let userDetailsFunc: any = async () => await axios.get(`https://wisdom-circle-nest-production.up.railway.app/user@mail.com`).then((res) => res.data)
+let userDetailsFunc: any = async () => await axios.get(import.meta.env.VITE_MAIN_URL+'/'+'user@mail.com').then((res) => res.data)
 
 let userDetails = ref()
 

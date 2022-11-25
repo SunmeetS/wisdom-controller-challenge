@@ -56,9 +56,8 @@ let validate = () => {
 let showModal = ref(false)
 
 let doesUserExist = async () => {
-    console.log("https://wisdom-circle-nest-production.up.railway.app/" + email.value);
 
-    let userObj: any = await axios.get(`https://wisdom-circle-nest-production.up.railway.app/${email.value}`).catch(()=>showModal.value = true)
+    let userObj: any = await axios.get(`${import.meta.env.VITE_MAIN_URL}/${email.value}`)
     if (email.value !== userObj.data.email) emailError.value = 'Sorry! This email  is not registered.'
     else {
         showModal.value = true
@@ -72,7 +71,7 @@ let doesUserExist = async () => {
     display: none;
 }
 
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+@media only screen and (min-device-width : 320px) and (max-device-width : 940px) {
 
     .main {
         display: flex;

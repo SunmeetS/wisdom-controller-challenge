@@ -57,6 +57,7 @@ img{
   align-items: center;
   position: absolute;
   background: rgba(0, 0, 0, 0.531);
+  z-index: 3;
 }
 
 .modalContainer{

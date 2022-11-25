@@ -1,4 +1,5 @@
 <template>
+    <WelcomePC class="pc" />
     <div class="mainWelcome">
         <div class="containerWelcome">
             <MainLogo />
@@ -12,43 +13,54 @@
 <script setup lang="ts">
 import MainLogo from "../components/MainLogo.vue"
 import TextComp from '@/components/TextComp.vue';
+import WelcomePC from "./WelcomePC.vue";
 
 </script>
 
 <style>
 .mainWelcome {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.848);
-    position: absolute;
-    width: 100vw;
-    top: 0rem;
-    left: 0rem;
+    display: none;
 }
 
-.textWelcome .signUp>* {
-    text-align: center;
-}
+@media only screen and (min-device-width : 320px) and (max-device-width : 940px) {
+    .pc {
+        display: none;
+    }
+    .mainWelcome {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: white;
+        position: absolute;
+        width: 100vw;
+        top: 0rem;
+        left: 0rem;
+        z-index: 10;
+    }
 
-.containerWelcome>img {
-    height: 20vh;
-}
+    .textWelcome .signUp>* {
+        text-align: center;
+    }
 
-.textWelcome>* {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+    .containerWelcome>img {
+        height: 20vh;
+    }
 
-.containerWelcome {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    width: 380px;
-    background: white;
-    height: 90vh;
+    .textWelcome>* {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .containerWelcome {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        width: 380px;
+        background: white;
+        height: 90vh;
+    }
 }
 </style>

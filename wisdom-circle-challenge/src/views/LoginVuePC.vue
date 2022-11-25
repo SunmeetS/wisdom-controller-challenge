@@ -36,6 +36,10 @@
                     Sign In
                 </Button>
             </div>
+            <div class="userDeets">
+                <h4>Current Email : {{ userDetails ? userDetails.email : '' }}</h4>
+                <h4>Current Password : {{ userDetails ? userDetails.password : '' }}</h4>
+            </div>
         </div>
     </div>
 </template>
@@ -54,7 +58,7 @@ let passRef = ref<HTMLInputElement | null>(null);
 let showPassword = ref(true);
 let userDetails = ref()
 
-let userDetailsFunc = async () => await axios.get(`https://wisdom-circle-nest-production.up.railway.app/user@mail.com`).then((res) => res.data)
+let userDetailsFunc = async () => await axios.get(import.meta.env.VITE_MAIN_URL+'/'+'user@mail.com').then((res) => res.data)
 
 userDetailsFunc().then((res: any) => {
     userDetails.value = res
@@ -102,7 +106,10 @@ let validate = async () => {
     width: 100vw
 }
 
-
+.userDeets{
+    position: absolute;
+    bottom: 10vh;
+}
 
 .inputGroup {
     display: flex;

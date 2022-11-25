@@ -83,7 +83,7 @@ let ifSuccess = async () => {
 
         axios({
             method: 'patch',
-            url: 'https://wisdom-circle-nest-production.up.railway.app/updatePassword',
+            url: import.meta.env.VITE_MAIN_URL+'/'+'updatePassword',
             data: {
                 email: 'user@mail.com',
                 password: password1.value
@@ -112,7 +112,7 @@ let ifSuccess = async () => {
     display: none;
 }
 
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+@media only screen and (min-device-width : 320px) and (max-device-width : 940px) {
 
     .mainScreen {
         display: flex;

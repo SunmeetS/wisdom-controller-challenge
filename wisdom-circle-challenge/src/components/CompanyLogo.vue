@@ -39,6 +39,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    position: relative;
+    z-index: 2;
 }
 
 .partition {
