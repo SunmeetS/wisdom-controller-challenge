@@ -37,8 +37,8 @@
                 </Button>
             </div>
             <div class="userDeets">
-                <h4>Current Email : {{ userDetails ? userDetails.email : '' }}</h4>
-                <h4>Current Password : {{ userDetails ? userDetails.password : '' }}</h4>
+                <h4>Current Email : {{ userDetails ? userDetails.email : '...Loading' }}</h4>
+                <h4>Current Password : {{ userDetails ? userDetails.password : '...Loading' }}</h4>
             </div>
         </div>
     </div>

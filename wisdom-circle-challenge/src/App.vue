@@ -3,9 +3,9 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <div class="app">
+  
     <RouterView />
-  </div>
+  
 </template>
 
 <style scoped>
@@ -14,17 +14,11 @@ header {
   max-height: 100vh;
 }
 
-.app {
-  position: fixed;
-  top: 0rem;
-  left: 0rem;
-}
-
 * {
   height: fit-content;
 }
 
-#app{
+#app {
   overflow: hidden;
 }
 
@@ -58,6 +52,7 @@ nav a:first-of-type {
   border: 0;
 }
 
+
 @media (min-width: 1024px) {
   header {
     display: flex;
@@ -82,6 +77,14 @@ nav a:first-of-type {
 
     padding: 1rem 0;
     margin-top: 1rem;
+  }
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 940px) {
+  .app {
+    position: fixed;
+    top: -5vh;
+    left: 0rem;
   }
 }
 </style>

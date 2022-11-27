@@ -3,9 +3,9 @@
         <CompanyLogo />
         <div class="welcomeHome">
             <div>
-                <MainLogo />
                 <TextComp class="textWelcome" heading="Welcome! "
                     subText="We hope we provided a smooth login experience for you. " />
+                <MainLogo />
             </div>
             <img src="../assets/dogWelcome.jpg" alt="">
         </div>

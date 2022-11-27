@@ -18,7 +18,10 @@
                         <div class="inputGroup">
                             <input ref="emailRef" type="email" v-model="email" placeholder="Email Id or Mobile Number"
                                 class="email" />
-                            <p class="errMsg">{{ emailError }}</p>
+                            <div class="errMsg">
+                                <p class="errMsg">{{ emailError }}</p>
+
+                            </div>
                             <div class="passDiv">
                                 <input ref="passRef" v-model="password" placeholder="Password"
                                     :type="showPassword ? 'password' : 'text'" class="password" />
@@ -31,19 +34,23 @@
                                 <img class="close" :onclick="() => showPassword = !showPassword"
                                     v-if="!showPassword && !passwordError" src="../assets/closedEye.png" alt="">
                             </div>
-                            <p class="errMsg">{{ passwordError }}</p>
+                            <div class="errMsg">
+                                <p class="errMsg">{{ passwordError }}</p>
+
+                            </div>
                             <a :onclick="() => router.push('forgotpassword')" class="forgotPassword">Forgot password</a>
                         </div>
                     </div>
                 </div>
                 <div class="userDeets">
-                    <h4>Current Email : {{ userDetails ? userDetails.email : '' }}</h4>
-                    <h4>Current Password : {{ userDetails ? userDetails.password : '' }}</h4>
+                    <h4>Current Email : {{ userDetails ? userDetails.email : '...Loading' }}</h4>
+                    <h4>Current Password : {{ userDetails ? userDetails.password : '...Loading' }}</h4>
                 </div>
 
             </div>
             <div class="footer">
                 <ButtonVue @click="validate"> Sign in </ButtonVue>
+                
             </div>
         </div>
     </div>
@@ -62,8 +69,7 @@ let emailRef = ref<HTMLInputElement | null>(null);
 let passRef = ref<HTMLInputElement | null>(null);
 let showPassword = ref(true);
 
-let userDetailsFunc: any = async () => await axios.get(import.meta.env.VITE_MAIN_URL+'/'+'user@mail.com').then((res) => res.data)
-
+let userDetailsFunc: any = async () => await axios.get(import.meta.env.VITE_MAIN_URL + '/' + 'user@mail.com').then((res) => res.data)
 let userDetails = ref()
 
 userDetailsFunc().then((res: any) => {
@@ -73,6 +79,8 @@ userDetailsFunc().then((res: any) => {
 onMounted(() => {
     emailRef.value!.focus()
     passRef.value!.focus()
+    // randomStandupComedy.value!.focus()
+    // console.log(randomStandupComedy.value)
 })
 
 let email = ref(""), password = ref(""),
@@ -101,11 +109,10 @@ let validate = async () => {
         console.log(userDetails.value.password, password.value)
 
         password.value === userDetails.value.password ? router.push("welcome") : console.error(userDetails.value.email)
+        // randomStandupComedy.value.click()
+        // Add Authentication to Random Standup Comedy App using this. 
     }
 }
-
-
-
 </script>
 
 <style >
@@ -130,6 +137,9 @@ input {
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
+    display: flex;
+    justify-content: start;
+    width: 100%
 }
 
 
@@ -138,7 +148,8 @@ input {
         display: none;
     }
 
-    .open, .close {
+    .open,
+    .close {
         margin-top: 8px;
     }
 
